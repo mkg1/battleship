@@ -105,15 +105,15 @@ class BattleshipTest < Minitest::Test
     refute ship2.overlaps_with?(ship3)
   end
 
-#   def test_12_ships_can_be_fired_at
-#     ship = Ship.new(4)
-#     ship.place(2, 1, true)
-#
-#     assert ship.fire_at(2, 1)
-#     refute ship.fire_at(1, 1)
-#     refute ship.fire_at(2, 1)
-#   end
-#
+  def test_12_ships_can_be_fired_at
+    ship = Ship.new(4)
+    ship.place(2, 1, true)
+
+    assert ship.fire_at(2, 1)
+    refute ship.fire_at(1, 1)
+    refute ship.fire_at(2, 1)
+  end
+
 #   def test_13_ships_can_be_sunk
 #     ship = Ship.new(2)
 #     ship.place(2, 1, true)
