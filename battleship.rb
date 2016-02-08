@@ -22,19 +22,23 @@ class Ship
   end
 
   def place (x, y, across)
-    @x = x
-    @y = y
-    @across = across
-    if @across == true
-      @length.times do
-        covers?(x, y)
-        x += 1
+    if @x == nil || @y == nil
+      @x = x
+      @y = y
+      @across = across
+      if @across == true
+        @length.times do
+          covers?(x, y)
+          x += 1
+        end
+      elsif @across == false
+        @length.times do
+          covers?(x, y)
+          y += 1
+        end
       end
-    elsif @across == false
-      @length.times do
-        covers?(x, y)
-        y += 1
-      end
+    else
+      return false
     end
   end
 
@@ -53,4 +57,4 @@ end
 
 ship = Ship.new(4)
 ship.place(2, 1, true)
-ship.covers?(4, 2)
+ship.place(3, 2, false)
