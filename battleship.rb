@@ -1,40 +1,21 @@
-class Player
-end
-
-class HumanPlayer < Player
-  attr_reader :name
-  def initialize (name = "Dave")
-    @name = name
-  end
-end
-
-class ComputerPlayer < Player
-  attr_reader :name
-  def initialize
-    @name = "HAL 9000"
-  end
-end
+require 'byebug'
 
 class Ship
-  attr_reader :length
+  attr_reader :length, :ship_coordinates
   def initialize (length)
     @length = length
+    @ship_coordinates = []
   end
 
   def place (x, y, across)
-    if @x == nil || @y == nil
-      @x = x
-      @y = y
-      @across = across
-      if @across == true
-        @length.times do
-          covers?(x, y)
-          x += 1
+    if @ship_coordinates.empty?
+      if across == true
+        (x...@length+x).each do |i|
+          @ship_coordinates << [i,y]
         end
-      elsif @across == false
-        @length.times do
-          covers?(x, y)
-          y += 1
+      elsif across == false
+        (y...@length+y).each do |j|
+          @ship_coordinates << [x,j]
         end
       end
     else
@@ -43,18 +24,13 @@ class Ship
   end
 
   def covers?(x, y)
-    if @across == true
-      if (x >= @x) && (x < (@x + @length)) && y == @y
-        return true
-      end
-    elsif @across == false
-      if (y >= @y) && (y < (@y + @length)) && x == @x
-        return true
+    @ship_coordinates.include?([x, y])
+  end
+
+  def overlaps_with?(ship_object)
+    @ship_coordinates.each do |place|
+      if ship_object.covers?(place[0],place[1])
       end
     end
   end
 end
-
-ship = Ship.new(4)
-ship.place(2, 1, true)
-ship.place(3, 2, false)
