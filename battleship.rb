@@ -1,8 +1,8 @@
 class Player
 end
 
-class HumanPlayer
+class HumanPlayer < Player
 end
 
-class ComputerPlayer
+class ComputerPlayer < Player
 end
