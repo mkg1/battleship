@@ -85,6 +85,11 @@ class Grid
     end
     false
   end
+
+  def x_of(coordinates)
+    x = coordinates.split("", 2)
+    return x[1].to_i
+  end
 end
 
 # grid = Grid.new
