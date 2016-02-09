@@ -90,6 +90,14 @@ class Grid
     x = coordinates.split("", 2)
     return x[1].to_i
   end
+
+  def y_of(coordinates)
+    y_letter = coordinates.split("", 2)
+    ("A".."J").each_with_index do |l, i|
+      y = i + 1
+      return y if y_letter[0] == l
+    end
+  end 
 end
 
 # grid = Grid.new
