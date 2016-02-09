@@ -6,6 +6,7 @@ require './battleship.rb'
 require './player.rb'
 require './human_player.rb'
 require './computer_player.rb'
+require './grid.rb'
 
 $mock_inputs = []
 def get_user_input
@@ -144,24 +145,24 @@ class BattleshipTest < Minitest::Test
 #   # that was being fired on.  Then you can immediately mark it as hit without
 #   # searching for it again.
 #
-#   def test_15_grid_class_exists
-#     assert Grid
-#   end
+  def test_15_grid_class_exists
+    assert Grid
+  end
 #
 #   # Remember, for a moment, just solve this one in the simplest way possible. As
 #   # far as this test is concerned, what does `has_ship_on?` always return?
-#   def test_16_empty_grid
-#     grid = Grid.new
-#     refute grid.has_ship_on?(1, 1)
-#     refute grid.has_ship_on?(10, 7)
-#   end
+  def test_16_empty_grid
+    grid = Grid.new
+    refute grid.has_ship_on?(1, 1)
+    refute grid.has_ship_on?(10, 7)
+  end
 #
-#   def test_17_empty_grid_can_display_itself
-#     grid = Grid.new
-#     assert_output(empty_grid) do
-#       grid.display
-#     end
-#   end
+  def test_17_empty_grid_can_display_itself
+    grid = Grid.new
+    assert_output(empty_grid) do
+      grid.display
+    end
+  end
 #
 #   def empty_grid
 #     %Q{    1   2   3   4   5   6   7   8   9   10
