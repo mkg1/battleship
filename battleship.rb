@@ -5,6 +5,7 @@ class Ship
   def initialize (length)
     @length = length
     @ship_coordinates = []
+    @hits = []
   end
 
   def place (x, y, across)
@@ -35,10 +36,13 @@ class Ship
     false
   end
 
-  def fire_at (x, y)
-    @ship_coordinates.each do |p|
-      return true if @ship_coordinates.include?([x, y])
+  def fire_at(x, y)
+    if covers?(x, y) && !@hits.include?([x, y])
+      @hits << [x, y]
     end
-    false
+  end
+
+  def sunk?
+    @hits.length == length
   end
 end
