@@ -3,10 +3,7 @@ require 'minitest/pride'
 require 'byebug'
 #Note: This line is going to fail first.
 require './battleship.rb'
-require './player.rb'
-require './human_player.rb'
-require './computer_player.rb'
-require './grid.rb'
+
 
 $mock_inputs = []
 def get_user_input
@@ -164,22 +161,22 @@ class BattleshipTest < Minitest::Test
     end
   end
 #
-#   def empty_grid
-#     %Q{    1   2   3   4   5   6   7   8   9   10
-#   -----------------------------------------
-# A |   |   |   |   |   |   |   |   |   |   |
-# B |   |   |   |   |   |   |   |   |   |   |
-# C |   |   |   |   |   |   |   |   |   |   |
-# D |   |   |   |   |   |   |   |   |   |   |
-# E |   |   |   |   |   |   |   |   |   |   |
-# F |   |   |   |   |   |   |   |   |   |   |
-# G |   |   |   |   |   |   |   |   |   |   |
-# H |   |   |   |   |   |   |   |   |   |   |
-# I |   |   |   |   |   |   |   |   |   |   |
-# J |   |   |   |   |   |   |   |   |   |   |
-#   -----------------------------------------
-# }
-#   end
+  def empty_grid
+    %Q{    1   2   3   4   5   6   7   8   9   10
+  -----------------------------------------
+A |   |   |   |   |   |   |   |   |   |   |
+B |   |   |   |   |   |   |   |   |   |   |
+C |   |   |   |   |   |   |   |   |   |   |
+D |   |   |   |   |   |   |   |   |   |   |
+E |   |   |   |   |   |   |   |   |   |   |
+F |   |   |   |   |   |   |   |   |   |   |
+G |   |   |   |   |   |   |   |   |   |   |
+H |   |   |   |   |   |   |   |   |   |   |
+I |   |   |   |   |   |   |   |   |   |   |
+J |   |   |   |   |   |   |   |   |   |   |
+  -----------------------------------------
+}
+  end
 #
 #   def test_18_place_ship
 #     grid = Grid.new
