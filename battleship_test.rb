@@ -177,18 +177,18 @@ J |   |   |   |   |   |   |   |   |   |   |
   -----------------------------------------
 }
   end
-#
-#   def test_18_place_ship
-#     grid = Grid.new
-#     assert grid.place_ship(Ship.new(4), 3, 3, true)
-#     refute grid.has_ship_on?(2, 3)
-#     assert grid.has_ship_on?(3, 3)
-#     assert grid.has_ship_on?(4, 3)
-#     assert grid.has_ship_on?(6, 3)
-#     refute grid.has_ship_on?(7, 3)
-#     refute grid.has_ship_on?(5, 4)
-#   end
-#
+
+  def test_18_place_ship
+    grid = Grid.new
+    assert grid.place_ship(Ship.new(4), 3, 3, true)
+    refute grid.has_ship_on?(2, 3)
+    assert grid.has_ship_on?(3, 3)
+    assert grid.has_ship_on?(4, 3)
+    assert grid.has_ship_on?(6, 3)
+    refute grid.has_ship_on?(7, 3)
+    refute grid.has_ship_on?(5, 4)
+  end
+
 #   # Don't forget on this next one that giving the ship coordinates and placing
 #   # it on the grid are two separate steps.  You can do the first before knowing
 #   # whether it's possible to do the second.
