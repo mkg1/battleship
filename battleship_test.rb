@@ -374,36 +374,36 @@ J |   |   |   |   |   |   |   |   |   |   |
 #   # This is the first test that involves you coming up with a strategy. The
 #   # computer player will need to put the ships somewhere.  Again, it can be as
 #   # dumb as you want, but the ships can't overlap.
-#   def test_32_computer_player_automatically_places_ships
-#     player = ComputerPlayer.new
-#     assert_output("HAL 9000 has placed its ships.\n") do
-#       player.place_ships([2, 3, 3, 4, 5])
-#     end
-#     assert_equal 5, player.ships.length
-#     assert_equal 4, player.ships[3].length
-#   end
+  def test_32_computer_player_automatically_places_ships
+    player = ComputerPlayer.new
+    assert_output("HAL 9000 has placed its ships.\n") do
+      player.place_ships([2, 3, 3, 4, 5])
+    end
+    assert_equal 5, player.ships.length
+    assert_equal 4, player.ships[3].length
+  end
 #
 #   # This is the second bit of "intelligence" that you can make as dumb as you
 #   # want.  The computer has to be able to decide where to shoot.
-#   def test_33_computer_players_can_call_shots
-#     player = ComputerPlayer.new
+  def test_33_computer_players_can_call_shots
+    player = ComputerPlayer.new
+
+    computer_shot = player.call_shot
+    assert ("A".."J").include?(computer_shot[0])
+    assert (1..10).include?(computer_shot[1..-1].to_i)
+  end
 #
-#     computer_shot = player.call_shot
-#     assert ("A".."J").include?(computer_shot[0])
-#     assert (1..10).include?(computer_shot[1..-1].to_i)
-#   end
-#
-#   def test_34_human_players_can_call_shots
-#     player = HumanPlayer.new
-#
-#     $mock_inputs.clear
-#     $mock_inputs << "G10"
-#     assert_output("Dave, please enter the coordinates for your next shot (e.g. 'B10'):\n") do
-#       human_shot = player.call_shot
-#       assert human_shot[0] = "G"
-#       assert human_shot[1..-1] = "10"
-#     end
-#   end
+  def test_34_human_players_can_call_shots
+    player = HumanPlayer.new
+
+    $mock_inputs.clear
+    $mock_inputs << "G10"
+    assert_output("Dave, please enter the coordinates for your next shot (e.g. 'B10'):\n") do
+      human_shot = player.call_shot
+      assert human_shot[0] = "G"
+      assert human_shot[1..-1] = "10"
+    end
+  end
 #
 #   def test_35_game_class_exists
 #     assert Game
