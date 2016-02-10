@@ -405,9 +405,9 @@ J |   |   |   |   |   |   |   |   |   |   |
     end
   end
 #
-#   def test_35_game_class_exists
-#     assert Game
-#   end
+  def test_35_game_class_exists
+    assert Game
+  end
 #
 #   def test_36_games_require_players
 #     assert_raises(ArgumentError) do
