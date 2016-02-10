@@ -5,23 +5,28 @@ def get_user_input
 end
 
 class HumanPlayer < Player
-  attr_reader :name, :grid
+  attr_accessor :name
+
   def initialize (name = "Dave")
-    @grid = Grid.new
     @name = name
+    super()
   end
 
   def place_ships(array)
-    puts "#{@name}, where would you like to place a ship of length #{array[0]}?"
-    puts "Across or Down?"
-    puts "#{@name}, where would you like to place a ship of length #{array[1]}?"
-    puts "Across or Down?"
-  end
+    ship_number = 0
+    while(ship_number < array.length)
+      len = array[ship_number]
+      puts "#{@name}, where would you like to place a ship of length #{len}?"
+      coordinates = get_user_input
+      puts "Across or Down?"
+      direction = get_user_input
 
-  def ships
+      if grid.place_ship(Ship.new(len), grid.x_of(coordinates),
+                        grid.y_of(coordinates), direction=="Across")
+        ship_number += 1
+      else
+        puts "Unfortunately, that ship overlaps with one of your other ships.  Please try again."
+      end
+    end
   end
-
-  def length
-  end
-  
 end

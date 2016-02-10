@@ -11,10 +11,7 @@ class Position
   end
 
   def hit!
-    if @hit
-      return false
-    else
-      @hit = true
-    end
+    return false if @hit
+    @hit = true
   end
 end

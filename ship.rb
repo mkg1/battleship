@@ -1,7 +1,7 @@
 require 'byebug'
 
 class Ship
-  attr_reader :length, :ship_coordinates
+  attr_reader :length
   def initialize (length)
     @length = length
     @ship_coordinates = []
@@ -9,33 +9,25 @@ class Ship
 
   def place (x, y, across)
     if @ship_coordinates.empty?
-      if across == true
-        (x...@length+x).each do |i|
-          @ship_coordinates << Position.new(i, y)
-        end
-      elsif across == false
-        (y...@length+y).each do |j|
-          @ship_coordinates << Position.new(x, j)
+      length.times do |i|
+        if across
+          @ship_coordinates << Position.new(x+i, y)
+        else
+          @ship_coordinates << Position.new(x, y+i)
         end
       end
-    else
-      return false
     end
-    true
   end
 
   def covers?(x, y)
     @ship_coordinates.each do |p|
       return p if x == p.x && y == p.y
     end
-    false
+    return false
   end
 
   def overlaps_with?(ship_object)
-    @ship_coordinates.each do |p|
-      return true if ship_object.covers?(p.x, p.y)
-    end
-    false
+    @ship_coordinates.any? {|p| ship_object.covers?(p.x, p.y)}
   end
 
   def fire_at(x, y)
@@ -44,16 +36,11 @@ class Ship
   end
 
   def hit_on?(x, y)
-    position = covers(x, y)
+    position = covers?(x, y)
     position && position.hit?
   end
 
   def sunk?
-    return false if @ship_coordinates.empty?
-    all_hit = true
-    @ship_coordinates.each do |p|
-      all_hit = false if !p.hit?
-    end
-    all_hit
+    !@ship_coordinates.empty? && @ship_coordinates.all? {|p| p.hit?}
   end
 end
