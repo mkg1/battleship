@@ -409,25 +409,25 @@ J |   |   |   |   |   |   |   |   |   |   |
     assert Game
   end
 #
-#   def test_36_games_require_players
-#     assert_raises(ArgumentError) do
-#       Game.new
-#     end
-#     human = HumanPlayer.new("Frank")
-#     computer = ComputerPlayer.new
-#     assert Game.new(human, computer)
-#   end
+  def test_36_games_require_players
+    assert_raises(ArgumentError) do
+      Game.new
+    end
+    human = HumanPlayer.new("Frank")
+    computer = ComputerPlayer.new
+    assert Game.new(human, computer)
+  end
 #
 #   # Tests 35 through XX are testing parts of game play, not the entire game.
 #   # First, test that the welcome method works.
-#   def test_37_game_welcomes_player
-#     human = HumanPlayer.new("Frank")
-#     computer = ComputerPlayer.new
-#     game = Game.new(human, computer)
-#     assert_output("Welcome, Frank and HAL 9000!\nIt's time to play Battleship.\n") do
-#       game.welcome
-#     end
-#   end
+  def test_37_game_welcomes_player
+    human = HumanPlayer.new("Frank")
+    computer = ComputerPlayer.new
+    game = Game.new(human, computer)
+    assert_output("Welcome, Frank and HAL 9000!\nIt's time to play Battleship.\n") do
+      game.welcome
+    end
+  end
 #
 #   # Second, test that the place_ships method works.
 #   def test_38_game_can_place_ships
