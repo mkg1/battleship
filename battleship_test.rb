@@ -563,84 +563,84 @@ J |   |   |   |   |   |   |   |   |   |   |
 #   #
 #   # This one is surprisingly hard.  Up until now, you won't kept any track of
 #   # shots taken that were misses.  Now you have to do that.
-#   def test_41_game_status_shows_hits_and_misses
-#     human1 = HumanPlayer.new("Amy")
-#     human2 = HumanPlayer.new("Beth")
-#     game = Game.new(human1, human2)
-#
-#     $mock_inputs.clear
-#     $mock_inputs += standard_placement # Set up Amy's ships
-#     $mock_inputs += standard_placement # Set up Beth's ships in the same places
-#
-#     # The /./ means that it doesn't matter what its puts'ed to the screen.
-#     assert_output(/./) do
-#       game.place_ships
-#     end
-#
-#     # It doesn't matter what messages come up during the turns
-#     assert_output(/./) do
-#       $mock_inputs.clear
-#
-#       $mock_inputs << "C3"     #Amy's hit
-#       game.take_turn
-#
-#       $mock_inputs << "B7"     #Beth's hit
-#       game.take_turn
-#
-#       $mock_inputs << "C4"     #Amy's miss
-#       game.take_turn
-#
-#       $mock_inputs << "B7"     #Beth's miss (she shot in the same spot as last time)
-#       game.take_turn
-#     end
-#
-#     # Now the visuals matter.  Should show Amy's shots up top and Amy's own ships below.
-#     assert_output(mid_game_status) do
-#       game.display_status
-#     end
-#   end
-#
-#   def mid_game_status
-#     %Q{SHOTS TAKEN:
-#     1   2   3   4   5   6   7   8   9   10
-#   -----------------------------------------
-# A |   |   |   |   |   |   |   |   |   |   |
-# B |   |   |   |   |   |   |   |   |   |   |
-# C |   |   | + | - |   |   |   |   |   |   |
-# D |   |   |   |   |   |   |   |   |   |   |
-# E |   |   |   |   |   |   |   |   |   |   |
-# F |   |   |   |   |   |   |   |   |   |   |
-# G |   |   |   |   |   |   |   |   |   |   |
-# H |   |   |   |   |   |   |   |   |   |   |
-# I |   |   |   |   |   |   |   |   |   |   |
-# J |   |   |   |   |   |   |   |   |   |   |
-#   -----------------------------------------
-#
-# YOUR BOARD:
-#     1   2   3   4   5   6   7   8   9   10
-#   -----------------------------------------
-# A | O |   | O |   | O |   | O |   | O |   |
-# B | O |   | O |   | O |   | X |   | O |   |
-# C |   |   | O |   | O |   | O |   | O |   |
-# D |   |   |   |   |   |   | O |   | O |   |
-# E |   |   |   |   |   |   |   |   | O |   |
-# F |   |   |   |   |   |   |   |   |   |   |
-# G |   |   |   |   |   |   |   |   |   |   |
-# H |   |   |   |   |   |   |   |   |   |   |
-# I |   |   |   |   |   |   |   |   |   |   |
-# J |   |   |   |   |   |   |   |   |   |   |
-#   -----------------------------------------
-# }
-#   end
-#
-#   # The previous five tests have required you to build methods on Game:
-#   # * `welcome`
-#   # * `place_ships`
-#   # * `display_status`
-#   # * `take_turn`
-#   # Now you have to build a final method on Game which will `play` the game.
-#   # It should call the four methods listed above in the appropriate order in the
-#   # appropriate control structures.  Good luck!
+  def test_41_game_status_shows_hits_and_misses
+    human1 = HumanPlayer.new("Amy")
+    human2 = HumanPlayer.new("Beth")
+    game = Game.new(human1, human2)
+
+    $mock_inputs.clear
+    $mock_inputs += standard_placement # Set up Amy's ships
+    $mock_inputs += standard_placement # Set up Beth's ships in the same places
+
+    # The /./ means that it doesn't matter what its puts'ed to the screen.
+    assert_output(/./) do
+      game.place_ships
+    end
+
+    # It doesn't matter what messages come up during the turns
+    assert_output(/./) do
+      $mock_inputs.clear
+
+      $mock_inputs << "C3"     #Amy's hit
+      game.take_turn
+
+      $mock_inputs << "B7"     #Beth's hit
+      game.take_turn
+
+      $mock_inputs << "C4"     #Amy's miss
+      game.take_turn
+
+      $mock_inputs << "B7"     #Beth's miss (she shot in the same spot as last time)
+      game.take_turn
+    end
+
+    # Now the visuals matter.  Should show Amy's shots up top and Amy's own ships below.
+    assert_output(mid_game_status) do
+      game.display_status
+    end
+  end
+
+  def mid_game_status
+    %Q{SHOTS TAKEN:
+    1   2   3   4   5   6   7   8   9   10
+  -----------------------------------------
+A |   |   |   |   |   |   |   |   |   |   |
+B |   |   |   |   |   |   |   |   |   |   |
+C |   |   | + | - |   |   |   |   |   |   |
+D |   |   |   |   |   |   |   |   |   |   |
+E |   |   |   |   |   |   |   |   |   |   |
+F |   |   |   |   |   |   |   |   |   |   |
+G |   |   |   |   |   |   |   |   |   |   |
+H |   |   |   |   |   |   |   |   |   |   |
+I |   |   |   |   |   |   |   |   |   |   |
+J |   |   |   |   |   |   |   |   |   |   |
+  -----------------------------------------
+
+YOUR BOARD:
+    1   2   3   4   5   6   7   8   9   10
+  -----------------------------------------
+A | O |   | O |   | O |   | O |   | O |   |
+B | O |   | O |   | O |   | X |   | O |   |
+C |   |   | O |   | O |   | O |   | O |   |
+D |   |   |   |   |   |   | O |   | O |   |
+E |   |   |   |   |   |   |   |   | O |   |
+F |   |   |   |   |   |   |   |   |   |   |
+G |   |   |   |   |   |   |   |   |   |   |
+H |   |   |   |   |   |   |   |   |   |   |
+I |   |   |   |   |   |   |   |   |   |   |
+J |   |   |   |   |   |   |   |   |   |   |
+  -----------------------------------------
+}
+  end
+
+  # The previous five tests have required you to build methods on Game:
+  # * `welcome`
+  # * `place_ships`
+  # * `display_status`
+  # * `take_turn`
+  # Now you have to build a final method on Game which will `play` the game.
+  # It should call the four methods listed above in the appropriate order in the
+  # appropriate control structures.  Good luck!
 #   def test_42_game_can_be_won
 #     human1 = HumanPlayer.new("Amy")
 #     human2 = HumanPlayer.new("Beth")

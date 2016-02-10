@@ -33,7 +33,12 @@ class Grid
       y = i+1
       line = l + " |"
       (1..10).each do |x|
-        line << "   |"
+        ship = has_ship_on?(x, y)
+        line << if ship && ship.hit_on?(x, y)
+                  " + "
+                else
+                  "   |"
+                end
       end
       puts line
     end
