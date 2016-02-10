@@ -26,6 +26,20 @@ class Grid
     display_line
   end
 
+  def display_shots_taken
+    display_header
+    display_line
+    ("A".."J").each_with_index do |l, i|
+      y = i+1
+      line = l + " |"
+      (1..10).each do |x|
+        line << "   |"
+      end
+      puts line
+    end
+    display_line
+  end
+
   private def display_line
     puts "  -----------------------------------------"
   end
@@ -64,7 +78,8 @@ class Grid
     coordinates[0].ord - 'A'.ord + 1
   end
 end
-
+# gridzz = Grid.new
+# puts gridzz.display_shots_taken
 # grid = Grid.new
 # puts grid.sunk?
 # grid.place_ship(Ship.new(2), 6, 4, true)

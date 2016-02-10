@@ -32,6 +32,14 @@ class HumanPlayer < Player
 
   def call_shot
     puts "#{name}, please enter the coordinates for your next shot (e.g. 'B10'):\n"
-    human_shot = get_user_input 
+    human_shot = get_user_input
+  end
+
+  def display_grid
+    grid.display
+  end
+
+  def display_shots_grid
+    grid.display_shots_taken
   end
 end
